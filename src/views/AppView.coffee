@@ -12,6 +12,7 @@ class window.AppView extends Backbone.View
   '
   initialize: ->
     @model.on 'change:game', @render, @
+    @backgroundView = new BackgroundView(model: @model).el
     @render()
 
   handleSubmit: (event) ->
@@ -24,8 +25,8 @@ class window.AppView extends Backbone.View
 
   render: ->
     @$el.children().detach()
-
-    @$el.html @template @model.attributes
+    @$el.append @template @model.attributes
     @$el.append new GameView(model: @model.get 'game').el
     @$el.append new HandHistoryView(collection: @model.get 'history').el
+    
 

@@ -10,6 +10,7 @@ class window.App extends Backbone.Model
 
   playerWin: ->
     @set 'money', (@get 'money') + (@get 'currentBet')
+    @trigger 'playerWin', @
     @resetGame()
 
   playerLose: ->
@@ -25,5 +26,5 @@ class window.App extends Backbone.Model
     @set 'gameCount', (@get 'gameCount') + 1
 
   bet: (amount) ->
-    @set 'currentBet', amount
+    @set 'currentBet', +amount
 

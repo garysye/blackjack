@@ -38,3 +38,9 @@ body {
   height: 70px;
   margin-right: 10px;
 }
+
+
+.chips {
+  max-width: 50px;
+  max-height: 50px;
+}
