@@ -16,6 +16,9 @@ class window.Game extends Backbone.Model
       return @playerWin()
     @countScores()
 
+  hands: ->
+    playerHand: (@get 'playerHand'), dealerHand: (@get 'dealerHand')
+
   countScores: ->
     if (@get 'playerHand').scores() > (@get 'dealerHand').scores()
       @playerWin()

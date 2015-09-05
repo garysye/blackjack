@@ -1,4 +1,7 @@
 class window.AppView extends Backbone.View
+
+  className: 'container'
+
   template: _.template '
     <div class="money">Cash: <%- money %></div>
     <div class="currentBet">At Stake: <%- currentBet %></div>
@@ -16,13 +19,13 @@ class window.AppView extends Backbone.View
     @model.bet (@$el.find '.betAmount').val()
     @render()
 
-  events: {
+  events: 
     "submit" : "handleSubmit"
-  }
 
   render: ->
     @$el.children().detach()
 
     @$el.html @template @model.attributes
     @$el.append new GameView(model: @model.get 'game').el
+    @$el.append new HandHistoryView(collection: @model.get 'history').el
 
