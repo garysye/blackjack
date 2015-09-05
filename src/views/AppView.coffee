@@ -1,20 +1,28 @@
 class window.AppView extends Backbone.View
   template: _.template '
-    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
-    <div class="player-hand-container"></div>
-    <div class="dealer-hand-container"></div>
+    <div class="money">Cash: <%- money %></div>
+    <div class="currentBet">At Stake: <%- currentBet %></div>
+    <form action="#" class="bet">
+      <input type="text" name="betAmount" placeholder="Set your bet here" value=0 class="betAmount"></input>
+      <input type="submit" class="Bet" value="BET"></input>
+    </form>
   '
-
-  events:
-    'click .hit-button': -> @model.get('playerHand').hit()
-    'click .stand-button': -> @model.get('playerHand').stand()
-
   initialize: ->
+    @model.on 'change:game', @render, @
     @render()
+
+  handleSubmit: (event) ->
+    event.preventDefault()
+    @model.bet (@$el.find '.betAmount').val()
+    @render()
+
+  events: {
+    "submit" : "handleSubmit"
+  }
 
   render: ->
     @$el.children().detach()
-    @$el.html @template()
-    @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
-    @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
+
+    @$el.html @template @model.attributes
+    @$el.append new GameView(model: @model.get 'game').el
 

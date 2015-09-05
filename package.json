@@ -1,0 +1,6 @@
+{
+  "name": "BlackJack",
+  "dependencies" :
+  { "sinon" : "1.16.1"
+  }
+}

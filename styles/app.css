@@ -5,12 +5,20 @@
   border-radius: 5px;
   height: 140px;
   margin-right: 20px;
+  background-size: contain;
 }
 
 .covered {
-  background-color: black;
+  background-image: url("../img/card-back.png");
+  font-size: 0px;
+  background-size: contain;
 }
 
 .hand {
   overflow: auto;
+}
+
+body {
+  background-image: url("../img/table.jpg");
+  background-size: cover;
 }
